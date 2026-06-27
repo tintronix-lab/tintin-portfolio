@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 255 255 255;
+  --fg: 10 10 10;
+}
+
+.dark {
+  --bg: 8 8 10;
+  --fg: 245 245 247;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: rgb(var(--bg));
+  color: rgb(var(--fg));
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Selection */
+::selection {
+  background: rgba(99, 102, 241, 0.18);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(120, 120, 130, 0.35);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(120, 120, 130, 0.55);
+  background-clip: content-box;
+}
+
+@layer components {
+  .glass {
+    @apply backdrop-blur-xl bg-white/60 dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08];
+  }
+  .card {
+    @apply rounded-3xl border border-black/[0.06] dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.03] shadow-soft;
+  }
+  .section {
+    @apply mx-auto max-w-6xl px-6 py-24 sm:py-32;
+  }
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.2em] text-black/40 dark:text-white/40;
+  }
+  .heading {
+    @apply text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight;
+  }
+  .pill {
+    @apply inline-flex items-center rounded-full border border-black/[0.08] dark:border-white/[0.12] px-3 py-1 text-xs font-medium text-black/70 dark:text-white/70;
+  }
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.bg-grid {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(0, 0, 0, 0.06) 1px,
+    transparent 0
+  );
+  background-size: 32px 32px;
+}
+.dark .bg-grid {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(255, 255, 255, 0.06) 1px,
+    transparent 0
+  );
+}
