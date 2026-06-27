@@ -15,8 +15,8 @@ export const profile = {
 };
 
 export const stats = [
-  { label: "Years of Experience", value: 12, suffix: "+" },
-  { label: "Countries Worked In", value: 14, suffix: "" },
+  { label: "Years of Experience", value: 20, suffix: "+" },
+  { label: "Countries Worked In", value: 23, suffix: "" },
   { label: "Products Delivered", value: 40, suffix: "+" },
   { label: "Teams Led", value: 9, suffix: "" },
 ];
@@ -61,46 +61,46 @@ export type Experience = {
 
 export const experiences: Experience[] = [
   {
-    role: "Senior Product Manager",
-    company: "Global Connectivity Platform",
-    period: "2021 — Present",
-    location: "Remote · EU/US",
+    role: "Solution Architect",
+    company: "Electrolux",
+    period: "2022 — Present",
+    location: "Global · Stockholm",
     summary:
-      "Lead product for a cloud connectivity suite serving enterprise IoT and consumer eSIM customers across 14 markets.",
+      "Drive digital transformation and solution architecture for connected home ecosystems, bridging consumer IoT, cloud platforms, and enterprise operations at scale.",
     achievements: [
-      "Grew connected-device base 3.4x while reducing churn by 22% through lifecycle redesign.",
-      "Shipped an AI-assisted diagnostics layer cutting support resolution time by 41%.",
-      "Unified three legacy platforms into a single API-first product, retiring $1.2M of annual tech debt.",
+      "Architected a unified API layer integrating 12+ appliance platforms, enabling real-time connectivity and AI-driven insights for 2M+ users globally.",
+      "Led cross-functional teams across EU, APAC, and Americas to define go-to-market strategies for smart home integrations, resulting in 3 new product launches.",
+      "Established cloud-first architecture principles and best practices, accelerating time-to-market by 40% across product lines.",
     ],
-    technologies: ["IoT", "eSIM", "AI/ML", "REST APIs", "Roadmapping", "OKRs"],
+    technologies: ["IoT", "Cloud Architecture", "APIs", "AI/ML", "Smart Home", "Strategy"],
   },
   {
-    role: "Technology Consultant",
-    company: "Independent / Boutique Advisory",
-    period: "2018 — 2021",
-    location: "Cross-border",
+    role: "Product Manager — Software",
+    company: "Teledyne (FLIR)",
+    period: "2003 — 2022",
+    location: "EU/Global",
     summary:
-      "Advised scale-ups and enterprises on digital transformation, platform strategy, and AI adoption.",
+      "Managed software product suites for thermal imaging and sensing systems, serving defense, security, and industrial verticals across 50+ countries.",
     achievements: [
-      "Delivered 18 engagements across fintech, mobility, and telecom verticals.",
-      "Designed a data platform blueprint adopted as the client's multi-year north star.",
-      "Stood up agile operating models for two 50+ engineer organizations.",
+      "Built and scaled software teams from 5 to 40+ engineers, establishing agile practices and continuous delivery across R&D.",
+      "Shipped 15+ major software releases integrating AI vision processing, increasing customer retention by 28% and opening new vertical markets.",
+      "Drove platform modernization from legacy systems to cloud-native architecture, reducing deployment times by 65% and infrastructure costs by $2.3M annually.",
     ],
-    technologies: ["Strategy", "Cloud", "Data Platforms", "Agile", "Discovery"],
+    technologies: ["Thermal Imaging", "Software Platform", "Vision AI", "Defense Tech", "Agile", "Leadership"],
   },
   {
-    role: "Product Lead",
-    company: "Enterprise SaaS",
-    period: "2015 — 2018",
-    location: "EU",
+    role: "Product Manager",
+    company: "Allgon LGP",
+    period: "2000 — 2003",
+    location: "Sweden",
     summary:
-      "Owned a B2B SaaS product line from early traction through enterprise scale.",
+      "Pioneered telecom infrastructure products for mobile connectivity and network optimization in early broadband era.",
     achievements: [
-      "Launched a self-serve onboarding flow that lifted activation by 58%.",
-      "Built and led a cross-functional squad of 9 across design, engineering, and data.",
-      "Introduced continuous discovery, doubling validated-experiment throughput.",
+      "Launched Sweden's first 3G-ready network optimization platform, securing 8 carrier contracts across Nordics.",
+      "Led product strategy and roadmap adoption across operator networks, establishing Allgon as a trusted infrastructure vendor.",
+      "Managed end-to-end product lifecycle from concept through commercialization, growing division revenue 180% in 3 years.",
     ],
-    technologies: ["SaaS", "UX", "Analytics", "Experimentation", "Leadership"],
+    technologies: ["Telecom", "Network Infrastructure", "3G/Mobile", "Product Strategy", "Commercial"],
   },
 ];
 
@@ -252,20 +252,45 @@ export const testimonials = [
 ];
 
 export const countries = [
-  { name: "United States", x: 22, y: 42 },
-  { name: "United Kingdom", x: 47, y: 33 },
-  { name: "Germany", x: 51, y: 35 },
-  { name: "France", x: 48, y: 38 },
-  { name: "Netherlands", x: 49, y: 33 },
-  { name: "Sweden", x: 53, y: 26 },
+  // North America
+  { name: "United States", x: 20, y: 42 },
+  { name: "Canada", x: 22, y: 28 },
+  // South America
+  { name: "Brazil", x: 32, y: 70 },
+  // Europe
+  { name: "United Kingdom", x: 45, y: 32 },
+  { name: "Ireland", x: 43, y: 31 },
+  { name: "France", x: 47, y: 37 },
+  { name: "Spain", x: 45, y: 41 },
+  { name: "Portugal", x: 42, y: 42 },
+  { name: "Italy", x: 51, y: 39 },
+  { name: "Germany", x: 51, y: 34 },
+  { name: "Netherlands", x: 49, y: 32 },
+  { name: "Poland", x: 54, y: 30 },
+  { name: "Sweden", x: 52, y: 23 },
+  { name: "Norway", x: 50, y: 20 },
+  { name: "Denmark", x: 51, y: 27 },
+  { name: "Finland", x: 56, y: 19 },
+  { name: "Romania", x: 57, y: 36 },
+  { name: "Lithuania", x: 56, y: 26 },
+  { name: "Estonia", x: 57, y: 22 },
+  // Africa
+  { name: "South Africa", x: 55, y: 72 },
+  { name: "Tunisia", x: 52, y: 47 },
+  // Middle East
   { name: "UAE", x: 62, y: 48 },
-  { name: "India", x: 70, y: 50 },
-  { name: "Singapore", x: 77, y: 60 },
-  { name: "Japan", x: 84, y: 42 },
-  { name: "Australia", x: 84, y: 74 },
-  { name: "Brazil", x: 33, y: 70 },
-  { name: "Canada", x: 22, y: 30 },
-  { name: "Spain", x: 46, y: 41 },
+  // Asia
+  { name: "India", x: 68, y: 50 },
+  { name: "China", x: 75, y: 38 },
+  { name: "Thailand", x: 73, y: 53 },
+  { name: "Malaysia", x: 75, y: 58 },
+  { name: "South Korea", x: 80, y: 35 },
+  { name: "Taiwan", x: 79, y: 40 },
+  { name: "Hong Kong", x: 78, y: 42 },
+  { name: "Singapore", x: 76, y: 59 },
+  { name: "Japan", x: 84, y: 41 },
+  // Oceania
+  { name: "Australia", x: 85, y: 73 },
 ];
 
 export const budgetOptions = [
