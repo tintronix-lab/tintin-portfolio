@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown, Download, Mail, MapPin } from "lucide-react";
 import { profile } from "@/lib/data";
+import { asset } from "@/lib/site";
 
 function useTypewriter(words: string[], speed = 90, pause = 1600) {
   const [index, setIndex] = useState(0);
@@ -95,7 +96,7 @@ export function Hero() {
         className="mt-10 flex flex-col items-center gap-3 sm:flex-row"
       >
         <a
-          href="/Tintin-Razavian-CV.pdf"
+          href={asset("/Tintin-Razavian-CV.pdf")}
           download
           className="group inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-medium text-white shadow-glow transition hover:scale-[1.03] dark:bg-white dark:text-ink"
         >

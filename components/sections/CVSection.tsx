@@ -4,8 +4,9 @@ import { useState } from "react";
 import { Download, Eye, FileText, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Reveal } from "@/components/Reveal";
+import { asset } from "@/lib/site";
 
-const CV_URL = "/Tintin-Razavian-CV.pdf";
+const CV_URL = asset("/Tintin-Razavian-CV.pdf");
 
 export function CVSection() {
   const [preview, setPreview] = useState(false);
