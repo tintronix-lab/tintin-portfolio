@@ -28,6 +28,7 @@ export const metadata: Metadata = {
     "Technology Consultant",
   ],
   authors: [{ name: "Tintin Razavian" }],
+  robots: { index: false, follow: false },
   openGraph: {
     title: "Tintin Razavian — Senior Product Manager & AI Strategist",
     description:

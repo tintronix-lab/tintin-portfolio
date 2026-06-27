@@ -15,10 +15,11 @@ import { Testimonials } from "@/components/sections/Testimonials";
 import { CVSection } from "@/components/sections/CVSection";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
+import { PasswordGate } from "@/components/PasswordGate";
 
 export default function Home() {
   return (
-    <>
+    <PasswordGate>
       <Loader />
       <ScrollProgress />
       <AnimatedBackground />
@@ -40,6 +41,6 @@ export default function Home() {
 
       <Footer />
       <BackToTop />
-    </>
+    </PasswordGate>
   );
 }
