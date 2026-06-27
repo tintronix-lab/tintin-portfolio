@@ -14,9 +14,39 @@ export const profile = {
   github: "https://github.com/tintronix-lab",
 };
 
+// Countries worked in, with geographic coordinates for the world map.
+export const countries = [
+  // North America
+  { name: "United States", lat: 37.1, lon: -95.7 },
+  // Europe
+  { name: "France", lat: 46.2, lon: 2.2 },
+  { name: "Spain", lat: 40.5, lon: -3.7 },
+  { name: "Portugal", lat: 39.4, lon: -8.2 },
+  { name: "Italy", lat: 41.9, lon: 12.6 },
+  { name: "Germany", lat: 51.2, lon: 10.5 },
+  { name: "Poland", lat: 51.9, lon: 19.1 },
+  { name: "Sweden", lat: 60.1, lon: 18.6 },
+  { name: "Norway", lat: 60.5, lon: 8.5 },
+  { name: "Denmark", lat: 56.3, lon: 9.5 },
+  { name: "Finland", lat: 61.9, lon: 25.7 },
+  { name: "Romania", lat: 45.9, lon: 24.9 },
+  { name: "Lithuania", lat: 55.2, lon: 23.9 },
+  { name: "Estonia", lat: 58.6, lon: 25.0 },
+  // Africa
+  { name: "South Africa", lat: -30.6, lon: 22.9 },
+  { name: "Tunisia", lat: 33.9, lon: 9.5 },
+  // Asia
+  { name: "Thailand", lat: 15.9, lon: 100.9 },
+  { name: "Malaysia", lat: 4.2, lon: 101.7 },
+  { name: "China", lat: 35.9, lon: 104.1 },
+  { name: "South Korea", lat: 35.9, lon: 127.8 },
+  { name: "Taiwan", lat: 23.7, lon: 120.9 },
+  { name: "Hong Kong", lat: 22.4, lon: 114.1 },
+];
+
 export const stats = [
   { label: "Years of Experience", value: 20, suffix: "+" },
-  { label: "Countries Worked In", value: 23, suffix: "" },
+  { label: "Countries Worked In", value: countries.length, suffix: "" },
   { label: "Products Delivered", value: 40, suffix: "+" },
   { label: "Teams Led", value: 9, suffix: "" },
 ];
@@ -249,48 +279,6 @@ export const testimonials = [
     name: "Head of Data",
     company: "Mobility Scale-up",
   },
-];
-
-export const countries = [
-  // North America
-  { name: "United States", lat: 37.1, lon: -95.7 },
-  { name: "Canada", lat: 56.1, lon: -106.3 },
-  // South America
-  { name: "Brazil", lat: -14.2, lon: -51.9 },
-  // Europe
-  { name: "United Kingdom", lat: 55.4, lon: -3.4 },
-  { name: "Ireland", lat: 53.4, lon: -8.2 },
-  { name: "France", lat: 46.2, lon: 2.2 },
-  { name: "Spain", lat: 40.5, lon: -3.7 },
-  { name: "Portugal", lat: 39.4, lon: -8.2 },
-  { name: "Italy", lat: 41.9, lon: 12.6 },
-  { name: "Germany", lat: 51.2, lon: 10.5 },
-  { name: "Netherlands", lat: 52.1, lon: 5.3 },
-  { name: "Poland", lat: 51.9, lon: 19.1 },
-  { name: "Sweden", lat: 60.1, lon: 18.6 },
-  { name: "Norway", lat: 60.5, lon: 8.5 },
-  { name: "Denmark", lat: 56.3, lon: 9.5 },
-  { name: "Finland", lat: 61.9, lon: 25.7 },
-  { name: "Romania", lat: 45.9, lon: 24.9 },
-  { name: "Lithuania", lat: 55.2, lon: 23.9 },
-  { name: "Estonia", lat: 58.6, lon: 25.0 },
-  // Africa
-  { name: "South Africa", lat: -30.6, lon: 22.9 },
-  { name: "Tunisia", lat: 33.9, lon: 9.5 },
-  // Middle East
-  { name: "UAE", lat: 23.4, lon: 53.8 },
-  // Asia
-  { name: "India", lat: 20.6, lon: 78.9 },
-  { name: "China", lat: 35.9, lon: 104.1 },
-  { name: "Thailand", lat: 15.9, lon: 100.9 },
-  { name: "Malaysia", lat: 4.2, lon: 101.7 },
-  { name: "South Korea", lat: 35.9, lon: 127.8 },
-  { name: "Taiwan", lat: 23.7, lon: 120.9 },
-  { name: "Hong Kong", lat: 22.4, lon: 114.1 },
-  { name: "Singapore", lat: 1.4, lon: 103.8 },
-  { name: "Japan", lat: 36.2, lon: 138.2 },
-  // Oceania
-  { name: "Australia", lat: -25.3, lon: 133.8 },
 ];
 
 export const budgetOptions = [

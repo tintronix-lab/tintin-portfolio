@@ -2,159 +2,132 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import {
+  ComposableMap,
+  Geographies,
+  Geography,
+  Graticule,
+  Marker,
+  Sphere,
+} from "react-simple-maps";
 import { countries } from "@/lib/data";
-
-// Simple Mercator projection: converts lat/lon to SVG coordinates
-function mercator(lat: number, lon: number, width: number, height: number) {
-  const x = ((lon + 180) / 360) * width;
-  const latRad = (lat * Math.PI) / 180;
-  const y =
-    ((1 -
-      Math.log(Math.tan(Math.PI / 4 + latRad / 2)) / Math.PI) /
-      2) *
-    height;
-  return { x, y };
-}
+import geoData from "@/lib/world-110m.json";
 
 export function WorldMap() {
   const [hover, setHover] = useState<string | null>(null);
-  const width = 960;
-  const height = 500;
 
   return (
-    <div className="relative w-full overflow-hidden rounded-3xl bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900/50 dark:to-blue-900/30 p-4">
-      <svg
-        viewBox={`0 0 ${width} ${height}`}
-        className="h-auto w-full"
-        role="img"
-        aria-label="World map of countries worked in"
+    <div className="relative w-full overflow-hidden rounded-3xl bg-gradient-to-b from-sky-50/80 to-indigo-50/40 ring-1 ring-black/[0.04] dark:from-slate-900/40 dark:to-indigo-950/30 dark:ring-white/[0.06]">
+      <ComposableMap
+        projection="geoEqualEarth"
+        projectionConfig={{ scale: 165, center: [12, 8] }}
+        width={800}
+        height={380}
+        style={{ width: "100%", height: "auto" }}
       >
-        <defs>
-          <filter id="mapGlow">
-            <feGaussianBlur stdDeviation="2" result="coloredBlur" />
-            <feMerge>
-              <feMergeNode in="coloredBlur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-          <radialGradient id="countryGradient" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="rgb(99,102,241)" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="rgb(99,102,241)" stopOpacity="0" />
-          </radialGradient>
-        </defs>
-
-        {/* Subtle grid */}
-        <g opacity="0.08" stroke="currentColor" strokeWidth="0.5">
-          {Array.from({ length: 13 }).map((_, i) => (
-            <line
-              key={`lat-${i}`}
-              x1="0"
-              y1={(i / 12) * height}
-              x2={width}
-              y2={(i / 12) * height}
-            />
-          ))}
-          {Array.from({ length: 25 }).map((_, i) => (
-            <line
-              key={`lon-${i}`}
-              x1={(i / 24) * width}
-              y1="0"
-              x2={(i / 24) * width}
-              y2={height}
-            />
-          ))}
-        </g>
-
-        {/* Simplified continent regions (landmass tint) */}
-        <rect
-          x="0"
-          y="0"
-          width={width}
-          height={height}
-          fill="url(#oceanGradient)"
-          opacity="0.15"
+        {/* Ocean sphere + graticule */}
+        <Sphere
+          id="ocean-sphere"
+          fill="transparent"
+          stroke="currentColor"
+          strokeWidth={0.5}
+          className="text-black/[0.06] dark:text-white/[0.08]"
         />
-        <defs>
-          <linearGradient id="oceanGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="rgb(59,130,246)" />
-            <stop offset="100%" stopColor="rgb(37,99,235)" />
-          </linearGradient>
-        </defs>
+        <Graticule
+          stroke="currentColor"
+          strokeWidth={0.4}
+          className="text-black/[0.04] dark:text-white/[0.05]"
+        />
 
-        {/* Country markers */}
+        {/* Land masses */}
+        <Geographies geography={geoData}>
+          {({ geographies }) =>
+            geographies.map((geo) => (
+              <Geography
+                key={geo.rsmKey}
+                geography={geo}
+                className="fill-slate-200/90 stroke-white outline-none transition-colors duration-300 hover:fill-slate-300 dark:fill-slate-700/60 dark:stroke-slate-900 dark:hover:fill-slate-600"
+                strokeWidth={0.5}
+                style={{
+                  default: { outline: "none" },
+                  hover: { outline: "none" },
+                  pressed: { outline: "none" },
+                }}
+              />
+            ))
+          }
+        </Geographies>
+
+        {/* Markers */}
         {countries.map((c) => {
-          const { x, y } = mercator(c.lat, c.lon, width, height);
           const isHover = hover === c.name;
-
           return (
-            <g
+            <Marker
               key={c.name}
+              coordinates={[c.lon, c.lat]}
               onMouseEnter={() => setHover(c.name)}
               onMouseLeave={() => setHover(null)}
               className="cursor-pointer"
-              filter="url(#mapGlow)"
             >
-              {/* Glow circle */}
+              {/* Soft glow */}
               <circle
-                cx={x}
-                cy={y}
-                r={isHover ? 16 : 12}
-                fill="url(#countryGradient)"
-                className="transition-all duration-200"
+                r={isHover ? 11 : 7}
+                className="fill-indigo-500/25 transition-all duration-200"
               />
-
-              {/* Main dot with animation */}
-              <motion.circle
-                cx={x}
-                cy={y}
-                r={isHover ? 5.5 : 3.5}
-                className="fill-indigo-500"
-                animate={{
-                  scale: isHover ? 1.6 : 1,
-                  opacity: isHover ? 1 : 0.9,
-                }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              />
-
-              {/* Pulse ring for non-hovered markers */}
+              {/* Pulse ring */}
               {!isHover && (
                 <motion.circle
-                  cx={x}
-                  cy={y}
-                  r={3.5}
+                  r={3}
                   fill="none"
                   stroke="rgb(99,102,241)"
-                  strokeWidth="0.8"
-                  opacity="0.4"
-                  animate={{ r: 8, opacity: 0 }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    repeatType: "loop",
-                  }}
+                  strokeWidth={1}
+                  initial={{ r: 3, opacity: 0.6 }}
+                  animate={{ r: 9, opacity: 0 }}
+                  transition={{ duration: 2.2, repeat: Infinity, ease: "easeOut" }}
                 />
               )}
-            </g>
+              {/* Core dot */}
+              <motion.circle
+                className="fill-indigo-500 stroke-white dark:stroke-slate-900"
+                strokeWidth={isHover ? 1.2 : 0.8}
+                animate={{ r: isHover ? 4.5 : 2.8 }}
+                transition={{ type: "spring", stiffness: 300, damping: 18 }}
+              />
+              {/* Hover label */}
+              {isHover && (
+                <g transform="translate(0,-14)">
+                  <rect
+                    x={-(c.name.length * 3 + 8)}
+                    y={-11}
+                    width={c.name.length * 6 + 16}
+                    height={18}
+                    rx={9}
+                    className="fill-ink dark:fill-white"
+                  />
+                  <text
+                    textAnchor="middle"
+                    y={2}
+                    className="fill-white text-[9px] font-semibold dark:fill-ink"
+                  >
+                    {c.name}
+                  </text>
+                </g>
+              )}
+            </Marker>
           );
         })}
-      </svg>
-
-      {/* Tooltip */}
-      {hover && (
-        <div className="pointer-events-none absolute left-1/2 top-6 -translate-x-1/2 rounded-full bg-ink px-4 py-2 text-xs font-semibold text-white shadow-lg dark:bg-white dark:text-ink">
-          {hover}
-        </div>
-      )}
+      </ComposableMap>
 
       {/* Legend */}
-      <div className="mt-4 flex items-center justify-between text-xs text-black/50 dark:text-white/50">
-        <p>Hover for details • 23 countries across 4 continents</p>
-        <div className="flex items-center gap-3">
-          <span className="flex items-center gap-1.5">
-            <span className="h-2 w-2 rounded-full bg-indigo-500" />
-            Worked in
+      <div className="flex items-center justify-between border-t border-black/[0.04] px-5 py-3 text-xs text-black/50 dark:border-white/[0.06] dark:text-white/50">
+        <p>Hover a marker for details</p>
+        <span className="flex items-center gap-1.5">
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-indigo-400 opacity-60" />
+            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-indigo-500" />
           </span>
-        </div>
+          {countries.length} countries · 4 continents
+        </span>
       </div>
     </div>
   );

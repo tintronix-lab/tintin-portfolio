@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { stats, focusAreas } from "@/lib/data";
+import { stats, focusAreas, countries } from "@/lib/data";
 import { Reveal } from "@/components/Reveal";
 import { Counter } from "@/components/Counter";
 import { WorldMap } from "@/components/WorldMap";
@@ -62,7 +62,7 @@ export function About() {
           <div className="card p-6">
             <div className="mb-4 flex items-center justify-between">
               <h3 className="text-sm font-semibold">Countries worked in</h3>
-              <span className="pill">14 markets</span>
+              <span className="pill">{countries.length} markets</span>
             </div>
             <WorldMap />
             <p className="mt-4 text-xs text-black/45 dark:text-white/45">
